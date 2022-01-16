@@ -1,0 +1,9 @@
+[user]
+	name = Gabriel Padron
+	email = gabrielpadc@gmail.com
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[core]
+	editor = neovim

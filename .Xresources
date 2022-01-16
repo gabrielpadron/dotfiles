@@ -1,0 +1,81 @@
+*.termName: xterm-256color
+*.vt100.locale: false
+*.vt100.utf8: true
+
+*.vt100.backarrowKey: false
+*.ttyModes: erase ^?
+*.vt100.metaSendsEscape: true
+
+! Font settings
+*faceName: JetBrainsMonoMedium Nerd Font Mono
+*faceSize: 12xterm*loginShell: true
+*vt100*geometry: 100x50
+
+UXTerm*allowBoldFonts: true
+
+! VT Font Menu: Unreadable
+*faceSize1: 8
+! VT Font Menu: Tiny
+*faceSize2: 10
+! VT Font Menu: Small
+*faceSize3: 12
+! VT Font Menu: Medium
+*faceSize4: 16
+! VT Font Menu: Large
+*faceSize5: 22
+! VT Font Menu: Huge
+*faceSize6: 24
+
+! Do not scroll when there is new input 
+*scrollTtyOutput: false
+
+! Copy to clipboard 
+*selectToClipboard: true
+
+! Select Text
+*hightlightSelection: true
+*trimSelection: true
+
+! Keybindings
+*vt100.translations: #override \n\
+  Ctrl <Key>-: smaller-vt-font() \n\
+  Ctrl <Key>+: larger-vt-font() \n\
+  Ctrl <Key>0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
+*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+*on3Clicks: regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+*translations: #override Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)  select-start() select-end()
+
+! Theme: TokyoNight
+
+*.background: #1a1b26
+*.foreground: #c0caf5
+*.selection_background: #33467C
+*.selection_foreground: #c0caf5
+*.url_color: #73daca
+*.cursor: #c0caf5
+
+*.color0: #15161E
+*.color1: #f7768e
+*.color2: #9ece6a
+*.color3: #e0af68
+*.color4: #7aa2f7
+*.color5: #bb9af7
+*.color6: #7dcfff
+*.color7: #a9b1d6
+
+*.color8: #414868
+*.color9: #f7768e
+*.color10: #9ece6a
+*.color11: #e0af68
+*.color12: #7aa2f7
+*.color13: #bb9af7
+*.color14: #7dcfff
+*.color15: #c0caf5
+
+Xft.Hinting: 1
+Xft.RGBA: rgb
+Xft.HintStyle: hintslight
+Xft.Antialias: 1
