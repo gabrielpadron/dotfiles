@@ -5,5 +5,7 @@
 	defaultBranch = main
 [color]
 	ui = auto
+[pull]
+  rebase = true
 [core]
 	editor = neovim
