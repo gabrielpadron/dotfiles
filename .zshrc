@@ -97,8 +97,15 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias nvc="~/.config/nvim/ && nvim init.lua"
+alias ktc="~/.config/kitty/ && nvim kitty.conf"
+alias i3c="~/.config/i3/ && nvim config"
+alias zshc="~ && nvim .zshrc"
+
+alias nv="nvim"
+alias ls="exa --icons"
+alias update="sudo pacman -Syyu; yay -Syyu"
+alias copy="xclip -sel c <"
 
 # Start Tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -153,6 +160,7 @@ SPACESHIP_CHAR_SUFFIX=" "
 xset r rate 210 40
 
 export EDITOR="nvim"
+export TERMINAL="kitty"
 export PATH=~/.local/bin/:$PATH
 
 # opam configuration
