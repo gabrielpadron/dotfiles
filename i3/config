@@ -138,18 +138,20 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+set $i3lockwall sh ~/.config/i3/scripts/lock.sh
+bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
+
 # Assign section
-assign [class="Thunar"] $ws3
-assign [class="vlc"] $ws4
-assign [class="^Spotify$"] $ws5
 assign [class="discord"] $ws6
 assign [class="TelegramDesktop"] $ws7
 
-# Steam 
 for_window [class="Steam"] floating enable
-
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Gnome-calculator"] floating enable
+for_window [class="Arandr"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -189,7 +191,7 @@ set $Locker i3lock && sleep 1
 
 # bindsym $mod+Escape exec ~/.config/polybar/grayblocks/scripts/powermenu.sh
 # bindsym $mod+Escape mode "$mode_system"
-bindsym $mod+Escape exec rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu
+# bindsym $mod+Escape exec rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu
 
 # bar
 bar {
@@ -230,18 +232,47 @@ bindsym XF86Calculator exec "gnome-calculator"
 exec setxkbmap -model pc104 -layout br -variant dvorak
 exec xrandr --output $m1 --auto --right-of $m2
 
-bindsym $mod+c exec vivaldi-stable
+bindsym $mod+c exec brave
 bindsym $mod+g exec nautilus
 bindsym Print exec flameshot gui
 bindsym $mod+Shift+x exec xinput map-to-output 28 $m1
 bindsym $mod+Shift+u exec setxkbmap -model pc104 -layout br -variant dvorak
 bindsym $mod+Shift+d exec setxkbmap -model abnt2 -layout br -variant abnt2
 
-bindsym $mod+comma exec --no-startup-id CM_LAUNCHER=rofi clipmenu
 exec --no-startup-id clipmenud
 
 exec_always feh --bg-scale ~/Pictures/w1.png
-# exec --no-startup-id autotiling &
 exec picom --config ~/.config/picom/picom.conf
 
 # exec_always /home/padron/.config/polybar/launch.sh --grayblocks
+
+# shutdown / restart / suspend...
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
+
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $i3lockwall, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Escape mode "$mode_system"
+
+set $mode_display Config monitor resolution - My first config (d) - My second config (t)
+
+mode "$mode_display" {
+    bindsym d exec --no-startup-id xrandr --output HDMI-A-0 --primary --mode 1366x768 --pos 1366x0 --rotate normal --output eDP --mode 1366x768 --pos 0x0 --rotate normal --output DisplayPort-0 --off
+    bindsym t exec --no-startup-id xrandr --output HDMI-A-0 --primary --mode 1366x768 --pos 0x0 --rotate normal --output eDP --mode 1366x768 --pos 1366x0 --rotate normal --output DisplayPort-0 --off
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+m mode "$mode_display"
