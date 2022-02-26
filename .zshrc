@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -102,10 +102,13 @@ alias ktc="~/.config/kitty/ && nvim kitty.conf"
 alias i3c="~/.config/i3/ && nvim config"
 alias zshc="~ && nvim .zshrc"
 
-alias nv="nvim"
+alias v="nvim"
+alias p="sudo pacman"
 alias ls="exa --icons"
 alias update="sudo pacman -Syyu; yay -Syyu"
 alias copy="xclip -sel c <"
+alias untar="tar -xvzf"
+alias rmdir="rm -rf"
 
 # Start Tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
